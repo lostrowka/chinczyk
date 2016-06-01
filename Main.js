@@ -17,15 +17,19 @@ function Main() {
     scene.add(axis);
 
     camera.position.x = 0;
-    camera.position.y = 400;
-    camera.position.z = 0;
+    camera.position.y = 300;
+    camera.position.z = 300;
     scene.add(camera);
 
     camera.lookAt(scene.position);
 
     //ruszanie kamera
-    controls = new THREE.OrbitControls( camera );
-    controls.addEventListener( 'change', renderer );
+    document.getElementById("start").onclick = function() {
+        document.getElementById("cover").style.visibility = "hidden";
+        controls = new THREE.OrbitControls( camera );
+        controls.addEventListener( 'change', renderer );
+    }
+
 
     var fieldElement = new FieldElement();
     scene.add(fieldElement.getFieldElement());
