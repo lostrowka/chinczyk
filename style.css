@@ -11,13 +11,19 @@ body {
 }
 
 #name {
+    position: absolute;
     margin: 0px auto;
-    display: block;
     top: 45%;
 }
 
 #start {
+    position: absolute;
     margin: 0px auto;
-    display: block;
+    top: 50%;
+}
+
+#reset {
+    position: absolute;
+    margin: 0px auto;
     top: 55%;
 }
