@@ -1,5 +1,6 @@
 ﻿function Model() {
     var loader = new THREE.JSONLoader();
+    var meshModel;
     loader.load('/libs/tris.js', function (geometry, mat) {
         geometry.computeMorphNormals();
         // dwa materialy - jeden zwykly, drugi do swiatla (TBA)
@@ -28,15 +29,14 @@
         meshModel = new THREE.MorphAnimMesh(geometry, mat_ninja);
         meshModel.name = "ninja";
 
-
         //meshModel.rotation.y = 400;
         meshModel.position.z = 275;
         meshModel.position.x = 275;
-        meshModel.position.y = 25; 
-        //meshModel.scale.set(1, 1, 1); 
+        meshModel.position.y = 25;
+        //meshModel.scale.set(1, 1, 1);
 
-        scene.add(meshModel);
-
+        //scene.add(meshModel);
+        /*
         meshModel.parseAnimations();
 
         tablica = [];
@@ -45,8 +45,10 @@
             tablica.push(key);
         }
         meshModel.playAnimation(tablica[0], 5);
+        */
     });
 
-
-
+    this.returnModel = function () {
+        return meshModel;
+    }
 }

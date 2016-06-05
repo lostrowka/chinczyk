@@ -2,6 +2,7 @@
 
 function Main() {
     var scene = new THREE.Scene();
+    var meshModel;
     var camera = new THREE.PerspectiveCamera(
         90, // kąt patrzenia kamery (FOV - field of view)
         4 / 3, // proporcje widoku
@@ -17,8 +18,8 @@ function Main() {
     scene.add(axis);
 
     camera.position.x = 0;
-    camera.position.y = 300;
-    camera.position.z = 300;
+    camera.position.y = 400;
+    camera.position.z = 400;
     scene.add(camera);
 
     camera.lookAt(scene.position);
@@ -29,6 +30,16 @@ function Main() {
         document.getElementById("cover").style.visibility = "hidden";
         controls = new THREE.OrbitControls( camera );
         controls.addEventListener( 'change', renderer );
+        meshModel = model.returnModel();
+        meshModel.parseAnimations();
+
+        tablica = [];
+        for (var key in meshModel.geometry.animations) {
+            if (key === 'length' || !meshModel.geometry.animations.hasOwnProperty(key)) continue;
+            tablica.push(key);
+        }
+        meshModel.playAnimation(tablica[0], 5);
+        scene.add(meshModel);
     }
 
     client.on("onconnect", function (data) {

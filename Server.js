@@ -67,6 +67,20 @@ var server = http.createServer(function (req, res) {
                     res.end();
                 });
             }
+            else if (req.url == "/libs/tris.js") {
+                fs.readFile("libs/tris.js", function (error, data) {
+                    res.writeHead(200, { 'Content-Type': 'application/javascript' });
+                    res.write(data);
+                    res.end();
+                });
+            }
+            else if (req.url == "/gfx/ralph.png") {
+                fs.readFile("gfx/ralph.png", function (error, data) {
+                    res.writeHead(200, { 'Content-Type': 'image/gif' });
+                    res.write(data);
+                    res.end();
+                });
+            }
             break;
 
         case "POST":
