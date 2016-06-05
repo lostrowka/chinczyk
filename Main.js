@@ -38,9 +38,18 @@ function Main() {
     var fieldElement = new FieldElement();
     scene.add(fieldElement.getFieldElement());
 
+    var model = new Model();
+
+    var clock = new THREE.Clock();
+
     function animateScene() {
         requestAnimationFrame(animateScene);
         renderer.render(scene, camera);
+
+        //animacja modelu
+        var delta = clock.getDelta();
+        if (typeof meshModel != 'undefined')
+            meshModel.updateAnimation(delta * 1000);
     }
     animateScene();
 }

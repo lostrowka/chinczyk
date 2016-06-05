@@ -7193,7 +7193,7 @@ THREE.EventDispatcher.prototype = {
 
 			for ( var i = 0; i < length; i ++ ) {
 
-				array[ i ].call( this, event );
+				//array[ i ].call( this, event );
 
 			}
 

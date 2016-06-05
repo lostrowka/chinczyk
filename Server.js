@@ -46,6 +46,13 @@ var server = http.createServer(function (req, res) {
                     res.end();
                 });
             }
+            else if (req.url == "/field/Model.js") {
+                fs.readFile("field/Model.js", function (error, data) {
+                    res.writeHead(200, { 'Content-Type': 'application/javascript' });
+                    res.write(data);
+                    res.end();
+                });
+            }
             else if (req.url == "/libs/OrbitControls.js") {
                 fs.readFile("libs/OrbitControls.js", function (error, data) {
                     res.writeHead(200, { 'Content-Type': 'application/javascript' });
