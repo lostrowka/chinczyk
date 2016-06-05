@@ -13,17 +13,23 @@ body {
 #name {
     position: absolute;
     margin: 0px auto;
+    width: 20%;
+    left: 40%;
     top: 45%;
 }
 
 #start {
     position: absolute;
     margin: 0px auto;
+    width: 6%;
+    left: 47%;
     top: 50%;
 }
 
 #reset {
     position: absolute;
     margin: 0px auto;
+    width: 6%;
+    left: 47%;
     top: 55%;
 }
