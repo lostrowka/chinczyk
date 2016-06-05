@@ -1,7 +1,7 @@
 var qs = require("querystring")
 var http = require("http")
 var fs = require("fs")
-//var socketio = require("socket.io")
+var socketio = require("socket.io")
 
 var server = http.createServer(function (req, res) {
     console.log(req.method)
@@ -87,7 +87,7 @@ function servResp(req, res) {
 server.listen(3000);
 console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
 
-/*
+
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
     console.log("klient sie podłączył" + client.id)
@@ -96,4 +96,3 @@ io.sockets.on("connection", function (client) {
         clientName: client.id
     })
 })
-*/

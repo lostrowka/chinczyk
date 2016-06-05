@@ -23,13 +23,17 @@ function Main() {
 
     camera.lookAt(scene.position);
 
-    //ruszanie kamera
+    var client = io();
+
     document.getElementById("start").onclick = function() {
         document.getElementById("cover").style.visibility = "hidden";
         controls = new THREE.OrbitControls( camera );
         controls.addEventListener( 'change', renderer );
     }
 
+    client.on("onconnect", function (data) {
+       alert(data.clientName)
+    })
 
     var fieldElement = new FieldElement();
     scene.add(fieldElement.getFieldElement());
