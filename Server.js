@@ -88,6 +88,27 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
+						else if (req.url == "/gfx/leo.png") {
+						    fs.readFile("gfx/leo.png", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/mich.png") {
+						    fs.readFile("gfx/mich.png", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/donatello.png") {
+						    fs.readFile("gfx/donatello.png", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
 						break;
 
 				case "POST":
