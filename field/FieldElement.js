@@ -25,16 +25,16 @@ function FieldElement() {
 
         switch (color) {
             case "red":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xEE0000 });
+                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xEB1515 });
                 break;
             case "blue":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x0000CC });
+                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x4366F0 });
                 break;
             case "yellow":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xEEFF00 });
+                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xFFAB24 });
                 break;
             case "green":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x00AA00 });
+                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x931AAB });
                 break;
         }
         var geometryPlane = new THREE.PlaneGeometry(50, 50);
