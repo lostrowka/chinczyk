@@ -89,25 +89,25 @@ var server = http.createServer(function (req, res) {
 								});
 						}
 						else if (req.url == "/gfx/leo.png") {
-						    fs.readFile("gfx/leo.png", function (error, data) {
-						        res.writeHead(200, { 'Content-Type': 'image/gif' });
-						        res.write(data);
-						        res.end();
-						    });
+								fs.readFile("gfx/leo.png", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
 						}
 						else if (req.url == "/gfx/mich.png") {
-						    fs.readFile("gfx/mich.png", function (error, data) {
-						        res.writeHead(200, { 'Content-Type': 'image/gif' });
-						        res.write(data);
-						        res.end();
-						    });
+								fs.readFile("gfx/mich.png", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
 						}
 						else if (req.url == "/gfx/donatello.png") {
-						    fs.readFile("gfx/donatello.png", function (error, data) {
-						        res.writeHead(200, { 'Content-Type': 'image/gif' });
-						        res.write(data);
-						        res.end();
-						    });
+								fs.readFile("gfx/donatello.png", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
 						}
 						break;
 
@@ -136,12 +136,12 @@ function servResp(req, res) {
 server.listen(3000);
 console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
 
+var clients = [];
 
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
-		console.log("klient sie podłączył" + client.id)
-		// client.id - unikalna nazwa klienta generowana przez socket.io
-		client.emit("onconnect", {
-				clientName: client.id
-		})
+		console.log("Klient sie podłączył: " + client.id)
+		client.emit("onconnect", { clientName: client.id })
+		clients.push(client);
+		console.log(client.id);
 })

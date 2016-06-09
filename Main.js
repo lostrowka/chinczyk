@@ -14,8 +14,8 @@ function Main() {
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(renderer.domElement);
 
-		var axis = new THREE.AxisHelper(2000);
-		scene.add(axis);
+		//var axis = new THREE.AxisHelper(2000);
+		//scene.add(axis);
 
 		camera.position.x = 0;
 		camera.position.y = 400;
@@ -28,19 +28,24 @@ function Main() {
 
 		document.getElementById("start").onclick = function() {
 				document.getElementById("cover").style.visibility = "hidden";
+				document.getElementById("chooseColor").style.visibility = "visible";
+		}
+
+		document.getElementById("select").onclick = function() {
+				document.getElementById("chooseColor").style.visibility = "hidden";
 				controls = new THREE.OrbitControls( camera );
 				controls.addEventListener( 'change', renderer );
 				model1 = model.returnModel1();
 
-            ///anim
+						///anim
 				model2.parseAnimations();
 				tablica = [];
 				for (var key in model1.geometry.animations) {
-				    if (key === 'length' || !model1.geometry.animations.hasOwnProperty(key)) continue;
+						if (key === 'length' || !model1.geometry.animations.hasOwnProperty(key)) continue;
 						tablica.push(key);
 				}
 				model1.playAnimation(tablica[0], 5);
-				model2.playAnimation(tablica[0], 5);          
+				model2.playAnimation(tablica[0], 5);
 				model3.playAnimation(tablica[0], 5);
 				model4.playAnimation(tablica[0], 5);
 
@@ -48,20 +53,20 @@ function Main() {
 				scene.add(model2);
 				scene.add(model3);
 				scene.add(model4);
-		    /////////////////team blue 
-            
+
+				/////////////////team blue
+
 				ninjaBlue1.parseAnimations();
 				ninjaBlue1.playAnimation(tablica[0], 5);
 				ninjaBlue2.playAnimation(tablica[0], 5);
 				ninjaBlue3.playAnimation(tablica[0], 5);
 				ninjaBlue4.playAnimation(tablica[0], 5);
-            
+
 				scene.add(ninjaBlue1);
 				scene.add(ninjaBlue2);
 				scene.add(ninjaBlue3);
 				scene.add(ninjaBlue4);
-            
-		    ///////////////// team orange
+					///////////////// team orange
 				ninjaOrange1.parseAnimations();
 				ninjaOrange1.playAnimation(tablica[0], 5);
 				ninjaOrange2.playAnimation(tablica[0], 5);
@@ -72,7 +77,7 @@ function Main() {
 				scene.add(ninjaOrange2);
 				scene.add(ninjaOrange3);
 				scene.add(ninjaOrange4);
-		    ///////////////// purple
+				///////////////// purple
 				ninjaPurple1.parseAnimations();
 				ninjaPurple1.playAnimation(tablica[0], 5);
 				ninjaPurple2.playAnimation(tablica[0], 5);
@@ -83,7 +88,6 @@ function Main() {
 				scene.add(ninjaPurple2);
 				scene.add(ninjaPurple3);
 				scene.add(ninjaPurple4);
-            
 		}
 
 		client.on("onconnect", function (data) {
@@ -104,26 +108,26 @@ function Main() {
 				//animacja modelu
 				var delta = clock.getDelta();
 				if (typeof model1 != 'undefined') {
-				    model1.updateAnimation(delta * 1000);
-				    model2.updateAnimation(delta * 1000);
-				    model3.updateAnimation(delta * 1000);
-				    model4.updateAnimation(delta * 1000);
-                    
-				    ninjaBlue1.updateAnimation(delta * 1000);
-				    ninjaBlue2.updateAnimation(delta * 1000);
-				    ninjaBlue3.updateAnimation(delta * 1000);
-				    ninjaBlue4.updateAnimation(delta * 1000);
+						model1.updateAnimation(delta * 1000);
+						model2.updateAnimation(delta * 1000);
+						model3.updateAnimation(delta * 1000);
+						model4.updateAnimation(delta * 1000);
 
-				    ninjaOrange1.updateAnimation(delta * 1000);
-				    ninjaOrange2.updateAnimation(delta * 1000);
-				    ninjaOrange3.updateAnimation(delta * 1000);
-				    ninjaOrange4.updateAnimation(delta * 1000);
+						ninjaBlue1.updateAnimation(delta * 1000);
+						ninjaBlue2.updateAnimation(delta * 1000);
+						ninjaBlue3.updateAnimation(delta * 1000);
+						ninjaBlue4.updateAnimation(delta * 1000);
 
-				    ninjaPurple1.updateAnimation(delta * 1000);
-				    ninjaPurple2.updateAnimation(delta * 1000);
-				    ninjaPurple3.updateAnimation(delta * 1000);
-				    ninjaPurple4.updateAnimation(delta * 1000);
-                    
+						ninjaOrange1.updateAnimation(delta * 1000);
+						ninjaOrange2.updateAnimation(delta * 1000);
+						ninjaOrange3.updateAnimation(delta * 1000);
+						ninjaOrange4.updateAnimation(delta * 1000);
+
+						ninjaPurple1.updateAnimation(delta * 1000);
+						ninjaPurple2.updateAnimation(delta * 1000);
+						ninjaPurple3.updateAnimation(delta * 1000);
+						ninjaPurple4.updateAnimation(delta * 1000);
+
 				}
 		}
 		animateScene();
