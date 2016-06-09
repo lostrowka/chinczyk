@@ -101,6 +101,8 @@ function Main() {
 
 		var clock = new THREE.Clock();
 
+		var dice = new Dice();
+
 		function animateScene() {
 				requestAnimationFrame(animateScene);
 				renderer.render(scene, camera);

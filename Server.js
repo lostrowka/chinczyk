@@ -109,6 +109,55 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
+						else if (req.url == "/gfx/1.jpg") {
+								fs.readFile("gfx/1.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/gfx/2.jpg") {
+								fs.readFile("gfx/2.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/gfx/3.jpg") {
+								fs.readFile("gfx/3.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/gfx/4.jpg") {
+								fs.readFile("gfx/4.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/gfx/5.jpg") {
+								fs.readFile("gfx/5.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/gfx/6.jpg") {
+								fs.readFile("gfx/6.jpg", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'image/gif' });
+										res.write(data);
+										res.end();
+								});
+						}
+						else if (req.url == "/game_mechanics/dice.js") {
+								fs.readFile("game_mechanics/dice.js", function (error, data) {
+										res.writeHead(200, { 'Content-Type': 'application/javascript' });
+										res.write(data);
+										res.end();
+								});
+						}
 						break;
 
 				case "POST":
