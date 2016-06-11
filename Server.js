@@ -4,12 +4,12 @@ var fs = require("fs")
 var socketio = require("socket.io")
 
 var server = http.createServer(function (req, res) {
-		console.log(req.method)
+		//console.log(req.method)
 
 		switch (req.method) {
 				case "GET":
 
-						console.log("Zadany: " + req.url)
+						//console.log("Zadany: " + req.url)
 
 						if (req.url == "/") {
 								fs.readFile("index.html", function (error, data) {
@@ -151,8 +151,8 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
-						else if (req.url == "/game_mechanics/dice.js") {
-								fs.readFile("game_mechanics/dice.js", function (error, data) {
+						else if (req.url == "/game_mechanics/Ui.js") {
+								fs.readFile("game_mechanics/Ui.js", function (error, data) {
 										res.writeHead(200, { 'Content-Type': 'application/javascript' });
 										res.write(data);
 										res.end();
@@ -190,7 +190,18 @@ var clients = [];
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
 		console.log("Klient sie podłączył: " + client.id)
-		client.emit("onconnect", { clientName: client.id })
-		clients.push(client);
-		console.log(client.id);
+		client.emit("onconnect", { clientName: client.id, clients: clients })
+		clients.push({id: client.id});
+
+        client.on("setColor", function (data) {
+            for(i = 0; i < clients.length; i++)
+                if(clients[i].id == client.id)
+                    clients[i].color = data.color;
+            console.log(clients)
+        })
 })
+
+
+
+
+
