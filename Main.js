@@ -59,6 +59,7 @@ function Main() {
 	function initGame() {
 		client.emit("setColor", { color: selectedColorDiv.id })
 		document.getElementById("chooseColor").style.visibility = "hidden";
+		ui.writeColor(selectedColorDiv.id);
 		ui.drawDice();
 		controls = new THREE.OrbitControls( camera );
 		controls.addEventListener( 'change', renderer );

@@ -1,13 +1,34 @@
 function Ui()
 {
+	this.writeColor = function(color) {
+		var yourColor = document.createElement('div');
+		yourColor.id = "yourColor";
+		yourColor.innerHTML = "Twój kolor to: <br />";
+		if(color == "red")
+			yourColor.innerHTML += "czerwony";
+		else if(color == "blue")
+			yourColor.innerHTML += "niebieski";
+		else if(color == "orange")
+			yourColor.innerHTML += "pomarańczowy";
+		else if(color == "purple")
+			yourColor.innerHTML += "fioletowy";
+		yourColor.width  = 100 + "px";
+		yourColor.height = 100 + "px";
+		yourColor.style.textAlign = "center";
+		yourColor.style.position = "absolute";
+		yourColor.style.bottom = 10 + "px";
+		yourColor.style.right = 103 + "px";
+		document.body.appendChild(yourColor);
+	}
+
 	this.drawDice = function() {
 		var canvas = document.createElement('canvas');
 			canvas.id     = "my_canvas_id";
 			canvas.width  = 83;
 			canvas.height = 83;
 			canvas.style.position = "absolute";
-			canvas.style.bottom = "10px";
-			canvas.style.right = "10px";
+			canvas.style.bottom = 10 + "px";
+			canvas.style.right = 10 + "px";
 			//canvas.style.zIndex="100"
 			document.body.appendChild(canvas);
 
