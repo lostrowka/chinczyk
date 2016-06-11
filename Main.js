@@ -25,6 +25,7 @@ function Main() {
 	camera.lookAt(scene.position);
 
 	var client = io();
+
 	client.on("onconnect", function (data) {
 		 console.log(data.clientName)
 		 for(i = 0; i < data.clients.length; i++)
@@ -33,6 +34,13 @@ function Main() {
 		 		document.getElementById(data.clients[i].color + "Color").style.backgroundColor = "#444444"; 
 		 	}
 	})
+
+	var currentTurn = null;
+
+	client.on("newTurn", function (data) {
+		currentTurn = data.newTurn;
+        ui.writeCurrentPlayer(data.newTurn);
+   	})
 
 	selectedColorDiv = null;
 
@@ -51,6 +59,12 @@ function Main() {
 		}
 	}
 
+	window.onkeydown = function (e) {
+		if(e.which == 13)
+			if(currentTurn == selectedColorDiv.id)
+				client.emit("newTurn", {})
+	}
+
 	document.getElementById("select").onclick = function() {
 		if(selectedColorDiv != null)
 			initGame();
@@ -64,7 +78,6 @@ function Main() {
 		controls = new THREE.OrbitControls( camera );
 		controls.addEventListener( 'change', renderer );
 		model1 = model.returnModel1();
-
 				///anim
 		model2.parseAnimations();
 		tablica = [];

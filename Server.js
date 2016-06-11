@@ -186,6 +186,8 @@ server.listen(3000);
 console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
 
 var clients = [];
+var currentTurn = null;
+var colors = ["red", "blue", "orange", "purple"];
 
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
@@ -194,10 +196,31 @@ io.sockets.on("connection", function (client) {
 		clients.push({id: client.id});
 
         client.on("setColor", function (data) {
+            if(currentTurn == null)
+                currentTurn = data.color;
             for(i = 0; i < clients.length; i++)
                 if(clients[i].id == client.id)
                     clients[i].color = data.color;
-            console.log(clients)
+            console.log(clients)       
+            io.sockets.emit("newTurn", { newTurn: currentTurn });
+        })
+
+        client.on("newTurn", function (data) {
+            index = colors.indexOf(currentTurn)
+            var newTurn = null;
+            while(newTurn == null) {
+                if(index == 3)
+                    index = 0;
+                else
+                    index++;
+                for(k = 0; k < clients.length; k++)
+                    if(clients[k].color == colors[index]) {
+                        newTurn = colors[index];
+                        currentTurn = newTurn;
+                    }
+            }
+            console.log("newTurn " + newTurn)
+            io.sockets.emit("newTurn", { newTurn: newTurn });
         })
 })
 

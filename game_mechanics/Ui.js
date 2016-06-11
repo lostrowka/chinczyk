@@ -12,13 +12,37 @@ function Ui()
 			yourColor.innerHTML += "pomarańczowy";
 		else if(color == "purple")
 			yourColor.innerHTML += "fioletowy";
-		yourColor.width  = 100 + "px";
-		yourColor.height = 100 + "px";
+		yourColor.style.width  = 100 + "px";
+		yourColor.style.height = 60 + "px";
 		yourColor.style.textAlign = "center";
 		yourColor.style.position = "absolute";
 		yourColor.style.bottom = 10 + "px";
 		yourColor.style.right = 103 + "px";
 		document.body.appendChild(yourColor);
+	}
+
+	this.writeCurrentPlayer = function(color) {
+		if(document.getElementById("currentPlayer") == null)
+			var currentPlayer = document.createElement('div');
+		else
+			var currentPlayer = document.getElementById("currentPlayer");
+		currentPlayer.id = "currentPlayer";
+		currentPlayer.innerHTML = "Aktualnie gra: <br />";
+		if(color == "red")
+			currentPlayer.innerHTML += "czerwony";
+		else if(color == "blue")
+			currentPlayer.innerHTML += "niebieski";
+		else if(color == "orange")
+			currentPlayer.innerHTML += "pomarańczowy";
+		else if(color == "purple")
+			currentPlayer.innerHTML += "fioletowy";
+		currentPlayer.style.width  = 100 + "px";
+		currentPlayer.style.height = 60 + "px";
+		currentPlayer.style.textAlign = "center";
+		currentPlayer.style.position = "absolute";
+		currentPlayer.style.bottom = 10 + "px";
+		currentPlayer.style.right = 213 + "px";
+		document.body.appendChild(currentPlayer);
 	}
 
 	this.drawDice = function() {
