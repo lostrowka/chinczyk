@@ -158,6 +158,13 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
+						else if (req.url == "/game_mechanics/Raycasting.js") {
+						    fs.readFile("game_mechanics/Raycasting.js", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'application/javascript' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
 						break;
 
 				case "POST":
