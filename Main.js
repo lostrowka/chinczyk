@@ -26,12 +26,12 @@ function Main() {
     //sb mafia
 	
 	var skybox_tab = [];
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb1.JPG') }));
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb2.JPG') }));
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb3.JPG') }));
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb4.JPG') }));
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb5.JPG') }));
-	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb6.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb1.jpg') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb2.jpg') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb3.jpg') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb4.jpg') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb5.jpg') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb6.jpg') }));
 
 	mat4sb = new THREE.MeshFaceMaterial(skybox_tab);
 	var geometrySB = new THREE.BoxGeometry(1500, 1500, 1500);
@@ -40,14 +40,17 @@ function Main() {
     
     // koniec sb mafii
 	var client = io();
+	var dice;
 
 	client.on("onconnect", function (data) {
-		 console.log(data.clientName)
-		 for(i = 0; i < data.clients.length; i++)
-		 	if(document.getElementById(data.clients[i].color) != null) {
-		 		document.getElementById(data.clients[i].color + "Color").className = "colorCircles selected";
-		 		document.getElementById(data.clients[i].color + "Color").style.backgroundColor = "#444444"; 
-		 	}
+		console.log(data.clientName)
+			for(i = 0; i < data.clients.length; i++)
+			 	if(document.getElementById(data.clients[i].color) != null) {
+			 		document.getElementById(data.clients[i].color + "Color").className = "colorCircles selected";
+			 		document.getElementById(data.clients[i].color + "Color").style.backgroundColor = "#444444"; 
+			 	}
+		if(data.dice != null)
+			dice = data.dice;
 	})
 
 	var currentTurn = null;
@@ -56,6 +59,16 @@ function Main() {
 		currentTurn = data.newTurn;
         ui.writeCurrentPlayer(data.newTurn);
         ui.setDice(data.dice);
+   	})
+
+   	turtles = [];
+
+   	client.on("newMove", function (data) {
+		turtles = data.turtles;
+		for(i = 0; i < turtles.length; i++) {
+			scene.getObjectByName(turtles[i].name).position.x = turtles[i].x;
+			scene.getObjectByName(turtles[i].name).position.z = turtles[i].z;
+		}
    	})
 
 	selectedColorDiv = null;
@@ -92,6 +105,7 @@ function Main() {
 		document.getElementById("chooseColor").style.visibility = "hidden";
 		ui.writeColor(selectedColorDiv.id);
 		ui.drawDice();
+		ui.setDice(dice);
 		controls = new THREE.OrbitControls( camera );
 		controls.addEventListener( 'change', renderer );
 		model1 = model.returnModel1();
@@ -147,6 +161,37 @@ function Main() {
 		scene.add(ninjaPurple3);
 		scene.add(ninjaPurple4);
 	}
+
+	document.addEventListener("mousedown", onDocumentMouseDown, false);
+
+    var raycaster = new THREE.Raycaster(); 
+    var mouseVector = new THREE.Vector2();
+
+    var thisTurtle = null;
+
+    function onDocumentMouseDown(event) {
+
+        mouseVector.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseVector.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        raycaster.setFromCamera(mouseVector, camera);
+
+        var intersects = raycaster.intersectObjects(scene.children,true);
+
+        if (intersects.length > 0) {
+            console.log(intersects[0].object.name + " " + intersects[0].object.position.x + " " + intersects[0].object.position.z);
+            if (intersects[0].object.name.substr(0, 5) == "ninja") {
+            	if(intersects[0].object.name.substr(5, (intersects[0].object.name.length - 6)).toLowerCase() == selectedColorDiv.id) {
+            		console.log(currentTurn)
+            		if(selectedColorDiv.id == currentTurn) {
+		                thisTurtle = intersects[0].object;
+		                console.log(thisTurtle);
+		                client.emit("newMove", { name: thisTurtle.name, color: intersects[0].object.name.substr(5, (intersects[0].object.name.length - 6)) })
+		            }
+	            }
+            }
+        }
+    }
 
 	var fieldElement = new FieldElement();
 	scene.add(fieldElement.getFieldElement());

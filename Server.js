@@ -9,7 +9,7 @@ var server = http.createServer(function (req, res) {
 		switch (req.method) {
 				case "GET":
 
-						//console.log("Zadany: " + req.url)
+						console.log("Zadany: " + req.url)
 
 						if (req.url == "/") {
 								fs.readFile("index.html", function (error, data) {
@@ -151,48 +151,48 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
-						else if (req.url == "/gfx/sb1.JPG") {
-						    fs.readFile("gfx/sb1.JPG", function (error, data) {
+						else if (req.url == "/gfx/sb1.jpg") {
+						    fs.readFile("gfx/sb1.jpg", function (error, data) {
 						        res.writeHead(200, { 'Content-Type': 'image/gif' });
 						        res.write(data);
 						        res.end();
 						    });
 						}
-						else if (req.url == "/gfx/sb2.JPG") {
-						    fs.readFile("gfx/sb2.JPG", function (error, data) {
+						else if (req.url == "/gfx/sb2.jpg") {
+						    fs.readFile("gfx/sb2.jpg", function (error, data) {
 						        res.writeHead(200, { 'Content-Type': 'image/gif' });
 						        res.write(data);
 						        res.end();
 						    });
 						}
-						else if (req.url == "/gfx/sb3.JPG") {
-						    fs.readFile("gfx/sb3.JPG", function (error, data) {
+						else if (req.url == "/gfx/sb3.jpg") {
+						    fs.readFile("gfx/sb3.jpg", function (error, data) {
 						        res.writeHead(200, { 'Content-Type': 'image/gif' });
 						        res.write(data);
 						        res.end();
 						    });
 						}
-						else if (req.url == "/gfx/sb4.JPG") {
-						    fs.readFile("gfx/sb4.JPG", function (error, data) {
+						else if (req.url == "/gfx/sb4.jpg") {
+						    fs.readFile("gfx/sb4.jpg", function (error, data) {
 						        res.writeHead(200, { 'Content-Type': 'image/gif' });
 						        res.write(data);
 						        res.end();
 						    });
 						}
-						else if (req.url == "/gfx/sb5.JPG") {
-						    fs.readFile("gfx/sb5.JPG", function (error, data) {
+						else if (req.url == "/gfx/sb5.jpg") {
+						    fs.readFile("gfx/sb5.jpg", function (error, data) {
 						        res.writeHead(200, { 'Content-Type': 'image/gif' });
 						        res.write(data);
 						        res.end();
 						    });
 						}
-						else if (req.url == "/gfx/sb6.JPG") {
-						    fs.readFile("gfx/sb6.JPG", function (error, data) {
-						        res.writeHead(200, { 'Content-Type': 'image/gif' });
-						        res.write(data);
-						        res.end();
-						    });
-						}
+						else if (req.url == "/gfx/sb6.jpg") {
+                            fs.readFile("gfx/sb6.jpg", function (error, data) {
+                                res.writeHead(200, { 'Content-Type': 'image/gif' });
+                                res.write(data);
+                                res.end();
+                            });
+                        }
 						else if (req.url == "/game_mechanics/Ui.js") {
 								fs.readFile("game_mechanics/Ui.js", function (error, data) {
 										res.writeHead(200, { 'Content-Type': 'application/javascript' });
@@ -208,28 +208,8 @@ var server = http.createServer(function (req, res) {
 						    });
 						}
 						break;
-
-				case "POST":
-						servResp(req, res)
-						break;
 		}
 })
-
-function servResp(req, res) {
-		var allData = "";
-
-		req.on("data", function (data) {
-				console.log("data: " + data)
-				allData += data;
-		})
-
-		req.on("end", function (data) {
-				var finish = qs.parse(allData)
-				switch (finish.action) {
-
-				}
-		})
-}
 
 server.listen(3000);
 console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
@@ -237,7 +217,6 @@ console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
 var clients = [];
 var currentTurn = null;
 var colors = ["red", "blue", "orange", "purple"];
-var currentDice = null;
 var fieldsTable = [
     {name: "red_field_1", x: 275, z: 75},
     {name: "red_field_2", x: 225, z: 75},
@@ -346,60 +325,124 @@ var purplePath = [
 ]
 
 var turtles = [
-    { name: "ninjaRed1", x: 275, z: 275},
-    { name: "ninjaRed2", x: 225, z: 225},
-    { name: "ninjaRed3", x: 275, z: 225},
-    { name: "ninjaRed4", x: 225, z: 275},
-    { name: "ninjaBlue1", x: -175, z: 225},
-    { name: "ninjaBlue2", x: -175, z: 275},
-    { name: "ninjaBlue3", x: -225, z: 225},
-    { name: "ninjaBlue4", x: -225, z: 275},
-    { name: "ninjaOrange1", x: -175, z: -175},
-    { name: "ninjaOrange2", x: -175, z: -225},
-    { name: "ninjaOrange3", x: -225, z: -175},
-    { name: "ninjaOrange4", x: -225, z: -225},
-    { name: "ninjaPurple1", x: 225, z: -175},
-    { name: "ninjaPurple2", x: 225, z: -225},
-    { name: "ninjaPurple3", x: 275, z: -175},
-    { name: "ninjaPurple4", x: 275, z: -225},
+    { name: "ninjaRed1", x: 275, z: 275, currentPos: null},
+    { name: "ninjaRed2", x: 225, z: 225, currentPos: null},
+    { name: "ninjaRed3", x: 275, z: 225, currentPos: null},
+    { name: "ninjaRed4", x: 225, z: 275, currentPos: null},
+    { name: "ninjaBlue1", x: -175, z: 225, currentPos: null},
+    { name: "ninjaBlue2", x: -175, z: 275, currentPos: null},
+    { name: "ninjaBlue3", x: -225, z: 225, currentPos: null},
+    { name: "ninjaBlue4", x: -225, z: 275, currentPos: null},
+    { name: "ninjaOrange1", x: -175, z: -175, currentPos: null},
+    { name: "ninjaOrange2", x: -175, z: -225, currentPos: null},
+    { name: "ninjaOrange3", x: -225, z: -175, currentPos: null},
+    { name: "ninjaOrange4", x: -225, z: -225, currentPos: null},
+    { name: "ninjaPurple1", x: 225, z: -175, currentPos: null},
+    { name: "ninjaPurple2", x: 225, z: -225, currentPos: null},
+    { name: "ninjaPurple3", x: 275, z: -175, currentPos: null},
+    { name: "ninjaPurple4", x: 275, z: -225, currentPos: null},
 ]
+
+var currentDice = Math.floor((Math.random() * 6) + 1);
 
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
-		console.log("Klient sie podłączył: " + client.id)
-		client.emit("onconnect", { clientname: client.id, clients: clients })
-		clients.push({id: client.id});
+	console.log("Klient sie podłączył: " + client.id)
+	client.emit("onconnect", { clientName: client.id, clients: clients, dice: currentDice})
+	clients.push({id: client.id});
 
-        client.on("setColor", function (data) {
-            if(currentTurn == null)
-                currentTurn = data.color;
-            for(i = 0; i < clients.length; i++)
-                if(clients[i].id == client.id)
-                    clients[i].color = data.color;
-            console.log(clients)       
-            io.sockets.emit("newTurn", { newTurn: currentTurn });
-        })
+    client.on("setColor", function (data) {
+        if(currentTurn == null)
+            currentTurn = data.color;
+        for(i = 0; i < clients.length; i++)
+            if(clients[i].id == client.id)
+                clients[i].color = data.color;
+        console.log(clients)       
+        io.sockets.emit("newTurn", { newTurn: currentTurn });
+    })
 
-        client.on("newTurn", function (data) {
-            index = colors.indexOf(currentTurn)
-            var newTurn = null;
-            while(newTurn == null) {
-                if(index == 3)
-                    index = 0;
-                else
-                    index++;
-                for(k = 0; k < clients.length; k++)
-                    if(clients[k].color == colors[index]) {
-                        newTurn = colors[index];
-                        currentTurn = newTurn;
-                    }
+    client.on("newTurn", function (data) {
+        index = colors.indexOf(currentTurn)
+        var newTurn = null;
+        while(newTurn == null) {
+            if(index == 3)
+                index = 0;
+            else
+                index++;
+            for(k = 0; k < clients.length; k++)
+                if(clients[k].color == colors[index]) {
+                    newTurn = colors[index];
+                    currentTurn = newTurn;
+                }
+        }
+        //console.log("newTurn " + newTurn)
+        currentDice = Math.floor((Math.random() * 6) + 1);
+        io.sockets.emit("newTurn", { newTurn: newTurn, dice: currentDice });
+    })
+
+    client.on("newMove", function (data) {
+        var tempTurtle = data.name;
+        var tempTurtleObj = null;
+        for(k = 0; k < turtles.length; k++)
+            if(turtles[k].name == tempTurtle) {
+                 tempTurtleObj = turtles[k];
             }
-            //console.log("newTurn " + newTurn)
-            currentDice = Math.floor((Math.random() * 6) + 1);
-            io.sockets.emit("newTurn", { newTurn: newTurn, dice: currentDice });
-        })
+        if(tempTurtleObj.currentPos == null) {
+            if(currentDice == 6) {
+                tempTurtleObj.currentPos = data.color.toLowerCase() + "_field_1";
+                console.log("current " + tempTurtleObj.currentPos)
+                for(k = 0; k < fieldsTable.length; k++)
+                    if(fieldsTable[k].name == tempTurtleObj.currentPos) {
+                        tempTurtleObj.x = fieldsTable[k].x;
+                        tempTurtleObj.z = fieldsTable[k].z;
+                    }
+                console.log(tempTurtleObj.x + " " + tempTurtleObj.z) 
+            }
+        }
+        else if(tempTurtleObj.currentPos != null) {
+            var path = null;
+            switch(data.color) {
+                case "Red":
+                    path = redPath;
+                    break;
+                case "Blue":
+                    path = bluePath;
+                    break;
+                case "Orange":
+                    path = orangePath;
+                    break;
+                case "Purple":
+                    path = purplePath;
+                    break;
+            }
+            console.log(path.indexOf(tempTurtleObj.currentPos))
+            tempTurtleObj.currentPos = path[path.indexOf(tempTurtleObj.currentPos) + currentDice];
+            console.log(tempTurtleObj.currentPos)
+            for(k = 0; k < fieldsTable.length; k++)
+                if(fieldsTable[k].name == tempTurtleObj.currentPos) {
+                    tempTurtleObj.x = fieldsTable[k].x;
+                    tempTurtleObj.z = fieldsTable[k].z;
+                }
+        } 
+        io.sockets.emit("newMove", { turtles: turtles });
+        index = colors.indexOf(currentTurn)
+        var newTurn = null;
+        while(newTurn == null) {
+            if(index == 3)
+                index = 0;
+            else
+                index++;
+            for(k = 0; k < clients.length; k++)
+                if(clients[k].color == colors[index]) {
+                    newTurn = colors[index];
+                    currentTurn = newTurn;
+                }
+        }
+        //console.log("newTurn " + newTurn)
+        currentDice = Math.floor((Math.random() * 6) + 1);
+        io.sockets.emit("newTurn", { newTurn: newTurn, dice: currentDice });
+    })
 })
-
 
 
 
