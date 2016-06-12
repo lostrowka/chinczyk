@@ -151,6 +151,48 @@ var server = http.createServer(function (req, res) {
 										res.end();
 								});
 						}
+						else if (req.url == "/gfx/sb1.JPG") {
+						    fs.readFile("gfx/sb1.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/sb2.JPG") {
+						    fs.readFile("gfx/sb2.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/sb3.JPG") {
+						    fs.readFile("gfx/sb3.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/sb4.JPG") {
+						    fs.readFile("gfx/sb4.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/sb5.JPG") {
+						    fs.readFile("gfx/sb5.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/sb6.JPG") {
+						    fs.readFile("gfx/sb6.JPG", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
 						else if (req.url == "/game_mechanics/Ui.js") {
 								fs.readFile("game_mechanics/Ui.js", function (error, data) {
 										res.writeHead(200, { 'Content-Type': 'application/javascript' });

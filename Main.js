@@ -23,7 +23,22 @@ function Main() {
 	scene.add(camera);
 
 	camera.lookAt(scene.position);
+    //sb mafia
+	
+	var skybox_tab = [];
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb1.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb2.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb3.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb4.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb5.JPG') }));
+	skybox_tab.push(new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, map: THREE.ImageUtils.loadTexture('gfx/sb6.JPG') }));
 
+	mat4sb = new THREE.MeshFaceMaterial(skybox_tab);
+	var geometrySB = new THREE.BoxGeometry(1500, 1500, 1500);
+	var skybox = new THREE.Mesh(geometrySB, mat4sb);
+    scene.add(skybox);
+    
+    // koniec sb mafii
 	var client = io();
 
 	client.on("onconnect", function (data) {
