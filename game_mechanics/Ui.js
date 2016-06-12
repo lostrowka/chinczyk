@@ -12,6 +12,7 @@ function Ui()
 			yourColor.innerHTML += "pomarańczowy";
 		else if(color == "purple")
 			yourColor.innerHTML += "fioletowy";
+		yourColor.style.color = "white";
 		yourColor.style.width  = 100 + "px";
 		yourColor.style.height = 60 + "px";
 		yourColor.style.textAlign = "center";
@@ -36,6 +37,7 @@ function Ui()
 			currentPlayer.innerHTML += "pomarańczowy";
 		else if(color == "purple")
 			currentPlayer.innerHTML += "fioletowy";
+		currentPlayer.style.color = "white";
 		currentPlayer.style.width  = 100 + "px";
 		currentPlayer.style.height = 60 + "px";
 		currentPlayer.style.textAlign = "center";
