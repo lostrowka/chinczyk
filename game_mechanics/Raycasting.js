@@ -17,7 +17,7 @@
             console.log(intersects[0].object.name);
             if (intersects[0].object.name == "ninjaRed") {
                 this_turtle = intersects[0].object;
-                console.log(this_turtle.position);
+                console.log(this_turtle);
             }
 
             if (intersects[0].object.name == "" && typeof this_turtle != 'undefined')
