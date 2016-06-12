@@ -14,7 +14,7 @@
         var intersects = raycaster.intersectObjects(scene.children,true);
 
         if (intersects.length > 0) {
-            console.log(intersects[0].object.name);
+            console.log(intersects[0].object.name + " " + intersects[0].object.position.x + " " + intersects[0].object.position.z);
             if (intersects[0].object.name == "ninjaRed") {
                 this_turtle = intersects[0].object;
                 console.log(this_turtle);
