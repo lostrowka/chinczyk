@@ -40,6 +40,7 @@ function Main() {
 	client.on("newTurn", function (data) {
 		currentTurn = data.newTurn;
         ui.writeCurrentPlayer(data.newTurn);
+        ui.setDice(data.dice);
    	})
 
 	selectedColorDiv = null;

@@ -86,7 +86,7 @@ function Ui()
 		}
 	}
 
-	this.randomDice = function() {
+	this.setDice = function(wynik) {
 		var myCanvas = document.getElementById('my_canvas_id');
 			var ctx = myCanvas.getContext('2d');
 			var img = new Image;
@@ -94,7 +94,7 @@ function Ui()
 			img.onload = function(){
 			  ctx.drawImage(img,0,0);
 			};
-			var wynik = Math.floor((Math.random() * 6) + 1);
+			//var wynik = Math.floor((Math.random() * 6) + 1);
 			switch (wynik){
 				case 1:
 					img.src = 'gfx/1.jpg';

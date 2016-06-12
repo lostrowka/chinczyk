@@ -188,6 +188,7 @@ console.log("serwer staruje na porcie 3000 - ten komunikat zobaczysz tylko raz")
 var clients = [];
 var currentTurn = null;
 var colors = ["red", "blue", "orange", "purple"];
+var currentDice = null;
 
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
@@ -219,8 +220,9 @@ io.sockets.on("connection", function (client) {
                         currentTurn = newTurn;
                     }
             }
-            console.log("newTurn " + newTurn)
-            io.sockets.emit("newTurn", { newTurn: newTurn });
+            //console.log("newTurn " + newTurn)
+            currentDice = Math.floor((Math.random() * 6) + 1);
+            io.sockets.emit("newTurn", { newTurn: newTurn, dice: currentDice });
         })
 })
 
