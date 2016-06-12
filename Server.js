@@ -192,7 +192,28 @@ var server = http.createServer(function (req, res) {
                                 res.write(data);
                                 res.end();
                             });
-                        }
+						}
+						else if (req.url == "/gfx/stars.png") {
+						    fs.readFile("gfx/stars.png", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/logo.png") {
+						    fs.readFile("gfx/logo.png", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
+						else if (req.url == "/gfx/load.gif") {
+						    fs.readFile("gfx/load.gif", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
 						else if (req.url == "/game_mechanics/Ui.js") {
 								fs.readFile("game_mechanics/Ui.js", function (error, data) {
 										res.writeHead(200, { 'Content-Type': 'application/javascript' });

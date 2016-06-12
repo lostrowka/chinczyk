@@ -1,5 +1,32 @@
 function Ui()
 {
+    ///logo
+    this.startScreen=function(){
+        console.log("odpalam start");
+        var ss = document.createElement("div");
+        ss.style.position = "absolute";
+        //ss.style.backgroundColor = "red";
+        ss.style.backgroundImage = "url(gfx/stars.png)";
+        ss.style.height = "100%";
+        ss.style.width = "100%";
+        ss.id = "startScreen";
+        var img = document.createElement("IMG");
+        img.src = "gfx/logo.png";
+        var gif = document.createElement("IMG");
+        gif.src = "gfx/load.gif";
+        gif.style.width = "10%";
+        img.style.height = "100%";
+        img.style.display = "block";
+        img.style.margin = "0 auto ";
+        ss.appendChild(gif);
+        gif.style.position = "absolute";
+        gif.style.left = "45%";
+        gif.style.top = "50%";
+        ss.appendChild(img);
+        ss.style.zIndex = "1";
+        document.body.appendChild(ss);
+    }
+
 	this.writeColor = function(color) {
 		var yourColor = document.createElement('div');
 		yourColor.id = "yourColor";

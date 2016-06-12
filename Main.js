@@ -1,6 +1,8 @@
 ﻿/// <reference path="libs/three.js" />
 
 function Main() {
+    var ui = new Ui();
+    ui.startScreen();
 	scene = new THREE.Scene();
 	var meshModel;
 	camera = new THREE.PerspectiveCamera(
@@ -73,7 +75,7 @@ function Main() {
 
 	selectedColorDiv = null;
 
-	var ui = new Ui();
+	
 	var rc = new Raycasting();
 
 	window.onclick = function (e) {
@@ -160,6 +162,7 @@ function Main() {
 		scene.add(ninjaPurple2);
 		scene.add(ninjaPurple3);
 		scene.add(ninjaPurple4);
+		
 	}
 
 	document.addEventListener("mousedown", onDocumentMouseDown, false);
