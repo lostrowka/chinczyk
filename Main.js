@@ -1,9 +1,9 @@
 ﻿/// <reference path="libs/three.js" />
 
 function Main() {
-	var scene = new THREE.Scene();
+	scene = new THREE.Scene();
 	var meshModel;
-	var camera = new THREE.PerspectiveCamera(
+	camera = new THREE.PerspectiveCamera(
 		90, // kąt patrzenia kamery (FOV - field of view)
 		4 / 3, // proporcje widoku
 		0.1, // min renderowana odległość
@@ -45,6 +45,7 @@ function Main() {
 	selectedColorDiv = null;
 
 	var ui = new Ui();
+	var rc = new Raycasting();
 
 	window.onclick = function (e) {
 		if(e.target.parentNode.className == "colors") {
@@ -141,7 +142,6 @@ function Main() {
 	function animateScene() {
 		requestAnimationFrame(animateScene);
 		renderer.render(scene, camera);
-
 		//animacja modelu
 		var delta = clock.getDelta();
 		if (typeof model1 != 'undefined') {

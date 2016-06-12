@@ -42,11 +42,11 @@ function FieldElement() {
         //win baza
         for (var i = 1; i <= 4; i++) {
             var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
-
             var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
             meshPlane.rotation.x = Math.PI / 2 + Math.PI;
             meshPlane.position.set(25, 0, 25);
             meshPlane.position.x += 50 * i;
+            meshPlane.name = color + "_field_" + (10 + i);
             lineOuterLine.position.x += 50 * i;
 
             fieldElementObject.add(meshPlane);
@@ -57,7 +57,8 @@ function FieldElement() {
         var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
         lineOuterLine.position.set(-50, 0, 250);
         meshPlane.rotation.x = Math.PI / 2 + Math.PI;
-        meshPlane.position.set(275, 0,75);
+        meshPlane.position.set(275, 0, 75);
+        meshPlane.name = color + "_field_1";
         fieldElementObject.add(meshPlane);
         fieldElementObject.add(lineOuterLine);
 
@@ -78,40 +79,44 @@ function FieldElement() {
                     fieldElementObject.add(lineOuterLine);
                 }
         }
-        //2
-        for (var i = 1; i < 6; i++) {
+
+        //1
+        for (var i = 0; i < 3; i++) {
             var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
             ///zmieniam material
             var materialPlane = new THREE.MeshBasicMaterial({ color: 0xbbbbbb });
             var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
             meshPlane.rotation.x = Math.PI / 2 + Math.PI;
+            meshPlane.position.set(225, 0, 75);
+            meshPlane.position.x -= 50 * i;
+            meshPlane.name = color+"_field_" + (i+2);
+            lineOuterLine.position.z += 50;
+            lineOuterLine.position.x -= 50 * (i-4);
+
+            fieldElementObject.add(meshPlane);
+            fieldElementObject.add(lineOuterLine);
+        }
+        //2
+        for (var i = 5; i >= 1; i--) {
+            var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
+            var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
+            meshPlane.rotation.x = Math.PI / 2 + Math.PI;
             meshPlane.position.set(75, 0, 25);
             meshPlane.position.z += 50 * i;
+            meshPlane.name = color + "_field_" + (i + 4);
             lineOuterLine.position.z += 50 * i;
             lineOuterLine.position.x += 50;
             fieldElementObject.add(meshPlane);
             fieldElementObject.add(lineOuterLine);
         }
-        //1
-        for (var i = 4; i > 0; i--) {
-            var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
 
-            var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
-            meshPlane.rotation.x = Math.PI / 2 + Math.PI;
-            meshPlane.position.set(25, 0, 75);
-            meshPlane.position.x += 50 * i;
-            lineOuterLine.position.z += 50;
-            lineOuterLine.position.x += 50 * i;
-
-            fieldElementObject.add(meshPlane);
-            fieldElementObject.add(lineOuterLine);
-        }
         //last
         var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
         var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
         lineOuterLine.position.set(0, 0, 250);
         meshPlane.rotation.x = Math.PI / 2 + Math.PI;
         meshPlane.position.set(25, 0, 275);
+        meshPlane.name = color + "_field_10";
         fieldElementObject.add(meshPlane);
         fieldElementObject.add(lineOuterLine);
 

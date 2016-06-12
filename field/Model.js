@@ -27,7 +27,7 @@
                     });
 
         meshModel = new THREE.MorphAnimMesh(geometry, mat_ninja);
-        meshModel.name = "ninja";
+        meshModel.name = "ninjaRed";
 
         //meshModel.rotation.y = 400;
         meshModel.position.z = 275;
