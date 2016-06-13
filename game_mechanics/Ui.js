@@ -63,9 +63,22 @@ function Ui()
         space.play();
     }
 
-    this.sala = function () {
+    this.sala = function (data) {
+    	var string = null;
+    	if(data == null)
+    		string = "Brak wyników"
+    	else {
+	    	for(p = 0; p < data.length; p++) {
+	    		console.log(data[p].num.toString() + " " + data[p].nick + " " + data[p].kolor)
+	    		if(string == null)
+	    			string = "<tr><td style='width: 25%;'>" + data[p].num + "</td><td style='width: 50%;'>" + data[p].nick + "</td><td style='width: 25%;'>" + data[p].kolor + "</td></tr>";
+	    		else
+	    			string += "<tr><td style='width: 25%;'>" + data[p].num + "</td><td style='width: 50%;'>" + data[p].nick + "</td><td style='width: 25%;'>" + data[p].kolor + "</td></tr>";
+	    	}
+    	}
         var ss = document.createElement("div");
         ss.style.position = "absolute";
+        ss.style.overflow = "hidden";
         ss.style.backgroundColor = "#C4C4C4";
         ss.style.width = "15%";
         ss.style.right = "3%";
@@ -73,7 +86,7 @@ function Ui()
         ss.style.textAlign = "center";
         ss.style.padding = "10px";
         ss.style.paddingBottom = "2%";
-        ss.innerHTML = "<h2>Sala chwały</h2>Mikosz to najlepszy gracz w chińczyka"
+        ss.innerHTML = "<h2>Sala chwały</h2><table>" + string + "</table>";
         ss.id = "sala";
         var ssx = document.createElement("div");
         ssx.style.position = "absolute";

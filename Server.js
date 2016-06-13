@@ -2,6 +2,7 @@ var qs = require("querystring")
 var http = require("http")
 var fs = require("fs")
 var socketio = require("socket.io")
+var mongoose = require("mongoose")
 
 var server = http.createServer(function (req, res) {
 		//console.log(req.method)
@@ -433,12 +434,15 @@ function checkSpot(spot) {
     return true;
 }
 
+var mongoData = null;
+
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
 	console.log("Klient sie podłączył: " + client.id)
-	client.emit("onconnect", { clientName: client.id, clients: clients, dice: currentDice})
+	client.emit("onconnect", { clientName: client.id, clients: clients, dice: currentDice, mongoData: mongoData})
 	clients.push({id: client.id});
 
+    
     client.on("setColor", function (data) {
         if(currentTurn == null)
             currentTurn = data.color;
@@ -466,6 +470,23 @@ io.sockets.on("connection", function (client) {
         //console.log("newTurn " + newTurn)
         currentDice = Math.floor((Math.random() * 6) + 1);
         io.sockets.emit("newTurn", { newTurn: newTurn, dice: currentDice });
+    })
+
+    client.on("winnerName", function (data) {
+        console.log("winnerName " + data.name + " " + data.color);
+        var winner = new Models.Wygrany(
+            {
+                id:          mongoData.length, 
+                nick:        data.name,
+                kolor:       data.color
+            });
+        winner.validate(function (err) {
+             console.log(err);
+        });
+        opers.InsertOne(winner);
+        opers.SelectAll(Models.Wygrany, function (data) {
+            mongoData = data.data;
+        })
     })
 
     client.on("newMove", function (data) {
@@ -588,6 +609,40 @@ io.sockets.on("connection", function (client) {
     })
 })
 
+mongoose.connect('mongodb://localhost/zapalskyostrychinczyk'); 
+var Models = require("./database/Models.js")(mongoose)
+var Operations = require("./database/Operations.js")
+var db;
+
+var opers = new Operations();
 
 
+function connectToMongo() {
+
+    db = mongoose.connection;
+
+    //przy wystąpieniu błędu
+
+    db.on("error", function () {
+        console.log("problem z mongo")
+    });
+
+    //przy poprawnym połaczeniu z bazą
+
+    db.once("open", function () {
+        console.log("mongo jest podłączone - można wykonywać operacje na bazie");
+        opers.SelectAll(Models.Wygrany, function (data) {
+            mongoData = data.data;
+        })
+        
+    });
+
+    //przy rozłaczeniu z bazą
+
+    db.once("close", function () {
+        console.log("mongodb zostało odłączone");
+    });
+}
+
+connectToMongo();
 

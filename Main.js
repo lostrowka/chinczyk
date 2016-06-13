@@ -48,6 +48,8 @@ function Main() {
 	var client = io();
 	var dice;
 
+	var mongoData;
+
 	client.on("onconnect", function (data) {
 		console.log(data.clientName)
 			for(i = 0; i < data.clients.length; i++)
@@ -57,6 +59,8 @@ function Main() {
 			 	}
 		if(data.dice != null)
 			dice = data.dice;
+		mongoData = data.mongoData;
+		console.log(mongoData)
 	})
 
 	var currentTurn = null;
@@ -87,7 +91,7 @@ function Main() {
 		alert("Wygrał: " + kolor);
 		if(selectedColorDiv.id == kolor) {
 			var nickname = prompt("Podaj swój nick")
-			client.emit("winnerName", { name: nickname })
+			client.emit("winnerName", { name: nickname, color: kolor })
 		}
    	})
 
@@ -192,7 +196,7 @@ function Main() {
 		scene.add(ninjaPurple4);
 
 		ui.helper();
-		ui.sala();
+		ui.sala(mongoData);
 		document.body.appendChild(renderer.domElement);
 		ui.sound();
 		
