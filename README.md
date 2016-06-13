@@ -1,4 +1,4 @@
-# chinczyk
+# Teenage Mutant Ninja Turtles Chińczyk: the game ... IN SPACE
 Chinczyk - Three.js &amp; Node, 2016
 # autorzy: Zapalsky & Ostry 
 
