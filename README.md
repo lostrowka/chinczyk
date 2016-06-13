@@ -14,7 +14,7 @@ Uwaga! do rozgywki potrzeba serwer node, do pobrania np. <a href="https://nodejs
 1. Pobiez i rozpakuj paczkę z grą
 2. Shift + PPM na wypakownaym folderze i opcja "otwóz okno polecenia tutaj"
 3. Zainstaluj moduł socket.io jeśli go nie posiadasz - polecenie 'npm install socket.io'
-4. ############# mongo tba #############
+4. Zainstaluj moduł mongoose jeśli go nie posiadasz - polecenie 'npm install mongoose'
 5. Uruchom serwer poleceniem 'node Server.js'
 6. Wpisz w przeglądarkę 'localhost:3000' lub w wypadku gdy klient jest zdalny 'xxx.xxx.xxx.xxx:3000' , w miejsce x wstaw swoje ip
 7. Ciesz się wspaniałą grą :)
