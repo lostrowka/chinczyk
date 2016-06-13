@@ -1,5 +1,10 @@
-# Teenage Mutant Ninja Turtles Chińczyk: the game ... IN SPACE
+# Teenage Mutant Ninja Turtles Chińczyk: the game ...IN SPACE
+
+![alt tag](https://github.com/lostrowka/chinczyk/blob/master/gfx/logo.png)
+
+
 Chinczyk - Three.js &amp; Node, 2016
+
 Autorzy: Zapalsky & Ostry 
 
 # Jak zagrać ???
