@@ -214,6 +214,13 @@ var server = http.createServer(function (req, res) {
 						        res.end();
 						    });
 						}
+						else if (req.url == "/favicon.ico") {
+						    fs.readFile("gfx/favicon.ico", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'image/gif' });
+						        res.write(data);
+						        res.end();
+						    });
+						}
 						else if (req.url == "/game_mechanics/Ui.js") {
 								fs.readFile("game_mechanics/Ui.js", function (error, data) {
 										res.writeHead(200, { 'Content-Type': 'application/javascript' });

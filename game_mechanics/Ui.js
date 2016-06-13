@@ -2,7 +2,7 @@ function Ui()
 {
     ///logo
     this.startScreen=function(){
-        console.log("odpalam start");
+        console.log("programista płakał jak commitował");
         var ss = document.createElement("div");
         ss.style.position = "absolute";
         //ss.style.backgroundColor = "red";
@@ -32,13 +32,13 @@ function Ui()
 		yourColor.id = "yourColor";
 		yourColor.innerHTML = "Twój kolor to: <br />";
 		if(color == "red")
-			yourColor.innerHTML += "czerwony";
+		    yourColor.innerHTML += "<span style='color:red'>czerwony</span>";
 		else if(color == "blue")
-			yourColor.innerHTML += "niebieski";
+		    yourColor.innerHTML += "<span style='color:#4366F0'>niebieki</span>";
 		else if(color == "orange")
-			yourColor.innerHTML += "pomarańczowy";
+		    yourColor.innerHTML += "<span style='color:orange'>pomarańczowy</span>";
 		else if(color == "purple")
-			yourColor.innerHTML += "fioletowy";
+		    yourColor.innerHTML += "<span style='color:#931AAB'>fioletowy</span>";
 		yourColor.style.color = "white";
 		yourColor.style.width  = 100 + "px";
 		yourColor.style.height = 60 + "px";
@@ -57,13 +57,13 @@ function Ui()
 		currentPlayer.id = "currentPlayer";
 		currentPlayer.innerHTML = "Aktualnie gra: <br />";
 		if(color == "red")
-			currentPlayer.innerHTML += "czerwony";
+		    currentPlayer.innerHTML += "<span style='color:red'>czerwony</span>";
 		else if(color == "blue")
-			currentPlayer.innerHTML += "niebieski";
+		    currentPlayer.innerHTML += "<span style='color:#4366F0'>niebieki</span>";
 		else if(color == "orange")
-			currentPlayer.innerHTML += "pomarańczowy";
+		    currentPlayer.innerHTML += "<span style='color:orange'>pomarańczowy</span>";
 		else if(color == "purple")
-			currentPlayer.innerHTML += "fioletowy";
+		    currentPlayer.innerHTML += "<span style='color:#931AAB'>fioletowy</span>";
 		currentPlayer.style.color = "white";
 		currentPlayer.style.width  = 100 + "px";
 		currentPlayer.style.height = 60 + "px";

@@ -166,7 +166,7 @@
         ninjaPurple4 = ninjaPurple1.clone();
         ninjaPurple4.name = "ninjaPurple4";
         ninjaPurple4.position.set(275, 25, -225);
-        setTimeout(function () { document.getElementById("startScreen").style.display = "none"; }, 5000);
+        setTimeout(function () { document.getElementById("startScreen").style.display = "none"; }, 0);
 
 
     });

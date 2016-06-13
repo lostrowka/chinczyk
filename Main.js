@@ -16,8 +16,8 @@ function Main() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
 
-	var axis = new THREE.AxisHelper(2000);
-	scene.add(axis);
+	//var axis = new THREE.AxisHelper(2000);
+	//scene.add(axis);
 
 	camera.position.x = 0;
 	camera.position.y = 400;
