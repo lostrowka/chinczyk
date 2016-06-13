@@ -25,6 +25,11 @@ function Main() {
 	scene.add(camera);
 
 	camera.lookAt(scene.position);
+    //light
+	var light = new THREE.PointLight(0xffffff, 1.4, 0);
+	light.position.set(-125, 1400,125);
+	scene.add(light);
+    //
     //sb mafia
 	
 	var skybox_tab = [];
@@ -131,10 +136,10 @@ function Main() {
 		/////////////////team blue
 
 		ninjaBlue1.parseAnimations();
-		ninjaBlue1.playAnimation(tablica[0], 5);
-		ninjaBlue2.playAnimation(tablica[0], 5);
-		ninjaBlue3.playAnimation(tablica[0], 5);
-		ninjaBlue4.playAnimation(tablica[0], 5);
+		ninjaBlue1.playAnimation(tablica[1], 5);
+		ninjaBlue2.playAnimation(tablica[1], 5);
+		ninjaBlue3.playAnimation(tablica[1], 5);
+		ninjaBlue4.playAnimation(tablica[1], 5);
 
 		scene.add(ninjaBlue1);
 		scene.add(ninjaBlue2);
@@ -142,10 +147,10 @@ function Main() {
 		scene.add(ninjaBlue4);
 			///////////////// team orange
 		ninjaOrange1.parseAnimations();
-		ninjaOrange1.playAnimation(tablica[0], 5);
-		ninjaOrange2.playAnimation(tablica[0], 5);
-		ninjaOrange3.playAnimation(tablica[0], 5);
-		ninjaOrange4.playAnimation(tablica[0], 5);
+		ninjaOrange1.playAnimation(tablica[12], 5);
+		ninjaOrange2.playAnimation(tablica[12], 5);
+		ninjaOrange3.playAnimation(tablica[12], 5);
+		ninjaOrange4.playAnimation(tablica[12], 5);
 
 		scene.add(ninjaOrange1);
 		scene.add(ninjaOrange2);
@@ -153,10 +158,10 @@ function Main() {
 		scene.add(ninjaOrange4);
 		///////////////// purple
 		ninjaPurple1.parseAnimations();
-		ninjaPurple1.playAnimation(tablica[0], 5);
-		ninjaPurple2.playAnimation(tablica[0], 5);
-		ninjaPurple3.playAnimation(tablica[0], 5);
-		ninjaPurple4.playAnimation(tablica[0], 5);
+		ninjaPurple1.playAnimation(tablica[11], 5);
+		ninjaPurple2.playAnimation(tablica[11], 5);
+		ninjaPurple3.playAnimation(tablica[11], 5);
+		ninjaPurple4.playAnimation(tablica[11], 5);
 
 		scene.add(ninjaPurple1);
 		scene.add(ninjaPurple2);

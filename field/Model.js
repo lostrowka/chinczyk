@@ -26,7 +26,7 @@
 
                     });
 
-        meshModel = new THREE.MorphAnimMesh(geometry, mat_ninja);
+        meshModel = new THREE.MorphAnimMesh(geometry, mat_swiatlo);
         meshModel.name = "ninjaRed1";
 
         //meshModel.rotation.y = 400;
@@ -71,7 +71,7 @@
 
                     });
 
-        ninjaBlue1 = new THREE.MorphAnimMesh(geometry, mat_ninja);
+        ninjaBlue1 = new THREE.MorphAnimMesh(geometry, mat_swiatlo);
         ninjaBlue1.name = "ninjaBlue1";
         ninjaBlue1.rotation.y = -Math.PI/2;
         ninjaBlue1.position.set(-175, 25, 225);
@@ -112,7 +112,7 @@
 
                     });
 
-        ninjaOrange1 = new THREE.MorphAnimMesh(geometry, mat_ninja);
+        ninjaOrange1 = new THREE.MorphAnimMesh(geometry, mat_swiatlo);
         ninjaOrange1.name = "ninjaOrange1";
         ninjaOrange1.rotation.y = Math.PI ;
         ninjaOrange1.position.set(-175, 25, -175);
@@ -153,7 +153,7 @@
 
                     });
 
-        ninjaPurple1 = new THREE.MorphAnimMesh(geometry, mat_ninja);
+        ninjaPurple1 = new THREE.MorphAnimMesh(geometry, mat_swiatlo);
         ninjaPurple1.name = "ninjaPurple1";
         ninjaPurple1.rotation.y = Math.PI/2;
         ninjaPurple1.position.set(225, 25, -175);

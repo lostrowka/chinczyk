@@ -25,16 +25,16 @@ function FieldElement() {
 
         switch (color) {
             case "red":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xEB1515 });
+                var materialPlane = new THREE.MeshLambertMaterial({ color: 0xEB1515, side: THREE.DoubleSide });
                 break;
             case "blue":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x4366F0 });
+                var materialPlane = new THREE.MeshLambertMaterial({ color: 0x4366F0, side: THREE.DoubleSide });
                 break;
             case "orange":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0xFFAB24 });
+                var materialPlane = new THREE.MeshLambertMaterial({ color: 0xFFAB24, side: THREE.DoubleSide });
                 break;
             case "purple":
-                var materialPlane = new THREE.MeshBasicMaterial({ color: 0x931AAB });
+                var materialPlane = new THREE.MeshLambertMaterial({ color: 0x931AAB, side: THREE.DoubleSide });
                 break;
         }
         var geometryPlane = new THREE.PlaneGeometry(50, 50);
@@ -89,7 +89,7 @@ function FieldElement() {
         for (var i = 0; i < 3; i++) {
             var lineOuterLine = new THREE.Line(geometryOuterLine, materialOuterLine);
             ///zmieniam material
-            var materialPlane = new THREE.MeshBasicMaterial({ color: 0xbbbbbb });
+            var materialPlane = new THREE.MeshLambertMaterial({ color: 0xbbbbbb, side: THREE.DoubleSide });
             var meshPlane = new THREE.Mesh(geometryPlane, materialPlane);
             meshPlane.rotation.x = Math.PI / 2 + Math.PI;
             meshPlane.position.set(225, 0, 75);
