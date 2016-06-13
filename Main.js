@@ -67,6 +67,30 @@ function Main() {
         ui.setDice(data.dice);
    	})
 
+   	client.on("winner", function (data) {
+   		var kolor = null;
+   		switch(data.color) {
+   			case "red":
+   				kolor = "czerwony";
+   				break;
+   			case "blue":
+   				kolor = "niebieski";
+   				break;
+   			case "orange":
+   				kolor = "pomarańczowy";
+   				break;
+   			case "purple":
+   				kolor = "fioletowy";
+   				break;
+
+   		}
+		alert("Wygrał: " + kolor);
+		if(selectedColorDiv.id == kolor) {
+			var nickname = prompt("Podaj swój nick")
+			client.emit("winnerName", { name: nickname })
+		}
+   	})
+
    	turtles = [];
 
    	client.on("newMove", function (data) {
@@ -193,7 +217,7 @@ function Main() {
         var intersects = raycaster.intersectObjects(scene.children,true);
 
         if (intersects.length > 0) {
-            console.log(intersects[0].object.name + " " + intersects[0].object.position.x + " " + intersects[0].object.position.z);
+            console.log("Ninja " + intersects[0].object.name + " " + intersects[0].object.position.x + " " + intersects[0].object.position.z);
             if (intersects[0].object.name.substr(0, 5) == "ninja") {
             	if(intersects[0].object.name.substr(5, (intersects[0].object.name.length - 6)).toLowerCase() == selectedColorDiv.id) {
             		console.log(currentTurn)

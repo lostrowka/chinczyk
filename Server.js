@@ -243,6 +243,14 @@ var server = http.createServer(function (req, res) {
 						    })
 
 						}
+                        else if (req.url === "/sfx/pope.mp3") {
+                            fs.readFile("sfx/pope.mp3", function (error, data) {
+                                res.writeHead(200, { 'Content-Type': 'audio/mpeg' });
+                                res.write(data);
+                                res.end();
+                            })
+
+                        }
 						break;
 		}
 })
@@ -361,25 +369,69 @@ var purplePath = [
 ]
 
 var turtles = [
-    { name: "ninjaRed1", x: 275, z: 275, currentPos: null},
-    { name: "ninjaRed2", x: 225, z: 225, currentPos: null},
-    { name: "ninjaRed3", x: 275, z: 225, currentPos: null},
-    { name: "ninjaRed4", x: 225, z: 275, currentPos: null},
-    { name: "ninjaBlue1", x: -175, z: 225, currentPos: null},
-    { name: "ninjaBlue2", x: -175, z: 275, currentPos: null},
-    { name: "ninjaBlue3", x: -225, z: 225, currentPos: null},
-    { name: "ninjaBlue4", x: -225, z: 275, currentPos: null},
-    { name: "ninjaOrange1", x: -175, z: -175, currentPos: null},
-    { name: "ninjaOrange2", x: -175, z: -225, currentPos: null},
-    { name: "ninjaOrange3", x: -225, z: -175, currentPos: null},
-    { name: "ninjaOrange4", x: -225, z: -225, currentPos: null},
-    { name: "ninjaPurple1", x: 225, z: -175, currentPos: null},
-    { name: "ninjaPurple2", x: 225, z: -225, currentPos: null},
-    { name: "ninjaPurple3", x: 275, z: -175, currentPos: null},
-    { name: "ninjaPurple4", x: 275, z: -225, currentPos: null},
+    { name: "ninjaRed1", x: 225, z: 225, currentPos: null, color: "red", startx: 225, startz: 225},
+    { name: "ninjaRed2", x: 225, z: 275, currentPos: null, color: "red", startx: 225, startz: 275},
+    { name: "ninjaRed3", x: 275, z: 225, currentPos: null, color: "red", startx: 275, startz: 225},
+    { name: "ninjaRed4", x: 275, z: 275, currentPos: null, color: "red", startx: 275, startz: 275},
+    { name: "ninjaBlue1", x: -175, z: 225, currentPos: null, color: "blue", startx: -175, startz: 225},
+    { name: "ninjaBlue2", x: -175, z: 275, currentPos: null, color: "blue", startx: -175, startz: 275},
+    { name: "ninjaBlue3", x: -225, z: 225, currentPos: null, color: "blue", startx: -225, startz: 225},
+    { name: "ninjaBlue4", x: -225, z: 275, currentPos: null, color: "blue", startx: -225, startz: 275},
+    { name: "ninjaOrange1", x: -175, z: -175, currentPos: null, color: "orange", startx: -175, startz: -175},
+    { name: "ninjaOrange2", x: -175, z: -225, currentPos: null, color: "orange", startx: -175, startz: -225},
+    { name: "ninjaOrange3", x: -225, z: -175, currentPos: null, color: "orange", startx: -225, startz: -175},
+    { name: "ninjaOrange4", x: -225, z: -225, currentPos: null, color: "orange", startx: -225, startz: -225},
+    { name: "ninjaPurple1", x: 225, z: -175, currentPos: null, color: "purple", startx: 225, startz: -175},
+    { name: "ninjaPurple2", x: 225, z: -225, currentPos: null, color: "purple", startx: 225, startz: -225},
+    { name: "ninjaPurple3", x: 275, z: -175, currentPos: null, color: "purple", startx: 275, startz: -175},
+    { name: "ninjaPurple4", x: 275, z: -225, currentPos: null, color: "purple", startx: 275, startz: -225},
 ]
 
 var currentDice = Math.floor((Math.random() * 6) + 1);
+
+function checkWin(color) {
+    var i = 0;
+    var check11 = null;
+    var check12 = null;
+    var check13 = null;
+    var check14 = null;
+    for(k = 0; k < turtles.length; k++) {
+        var tempPos = turtles[k].currentPos;
+        if(tempPos != null) {
+            var array = tempPos.split("_");
+            //console.log(array[0] + " " + color.toLowerCase())
+            if(array[0] == color.toLowerCase()) {
+                if(tempPos == array[0] + "_field_11" && check11 == null) {
+                    i++;
+                    check11 = 1;
+                }
+                else if(tempPos == array[0] + "_field_12" && check12 == null) {
+                    i++;
+                    check12 = 1;
+                }
+                else if(tempPos == array[0] + "_field_13" && check13 == null) {
+                    i++;
+                    check13 = 1;
+                }
+                else if(tempPos == array[0] + "_field_14" && check14 == null) {
+                    i++;
+                    check14 = 1;
+                }
+                if(i == 4)
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+
+function checkSpot(spot) {
+    for(k = 0; k < turtles.length; k++) {
+        if(turtles[k].currentPos == spot)
+            return turtles[k];
+    }
+    return true;
+}
 
 var io = socketio.listen(server)
 io.sockets.on("connection", function (client) {
@@ -419,20 +471,33 @@ io.sockets.on("connection", function (client) {
     client.on("newMove", function (data) {
         var tempTurtle = data.name;
         var tempTurtleObj = null;
+        var tempPosition;
         for(k = 0; k < turtles.length; k++)
             if(turtles[k].name == tempTurtle) {
                  tempTurtleObj = turtles[k];
             }
         if(tempTurtleObj.currentPos == null) {
             if(currentDice == 6) {
-                tempTurtleObj.currentPos = data.color.toLowerCase() + "_field_1";
-                console.log("current " + tempTurtleObj.currentPos)
-                for(k = 0; k < fieldsTable.length; k++)
+                tempPosition = data.color.toLowerCase() + "_field_1";
+                if(checkSpot(tempPosition) == true) {
+                    for(k = 0; k < fieldsTable.length; k++)
                     if(fieldsTable[k].name == tempTurtleObj.currentPos) {
                         tempTurtleObj.x = fieldsTable[k].x;
                         tempTurtleObj.z = fieldsTable[k].z;
                     }
-                console.log(tempTurtleObj.x + " " + tempTurtleObj.z) 
+                    tempTurtleObj.currentPos = tempPosition;
+                } 
+                else {
+                    turtle = checkSpot(tempPosition);
+                    if(turtle.color != data.color.toLowerCase()) {
+                        console.log("mamy bicie " + turtle.color + " " +  data.color.toLowerCase())
+                        turtle.x = turtle.startx;
+                        turtle.z = turtle.startz;
+                        turtle.currentPos = null;
+                        tempTurtleObj.currentPos = tempPosition;
+                    console.log(" ")
+                    }   
+                }
             }
         }
         else if(tempTurtleObj.currentPos != null) {
@@ -451,15 +516,58 @@ io.sockets.on("connection", function (client) {
                     path = purplePath;
                     break;
             }
-            console.log(path.indexOf(tempTurtleObj.currentPos))
-            tempTurtleObj.currentPos = path[path.indexOf(tempTurtleObj.currentPos) + currentDice];
-            console.log(tempTurtleObj.currentPos)
-            for(k = 0; k < fieldsTable.length; k++)
-                if(fieldsTable[k].name == tempTurtleObj.currentPos) {
-                    tempTurtleObj.x = fieldsTable[k].x;
-                    tempTurtleObj.z = fieldsTable[k].z;
-                }
-        } 
+            //console.log(path.indexOf(tempTurtleObj.currentPos))
+            if((path.indexOf(tempTurtleObj.currentPos) + currentDice) < path.length) {
+                tempPosition = path[path.indexOf(tempTurtleObj.currentPos) + currentDice];
+            }
+            else {
+                tempPosition = path[path.length - 1];
+            }
+            if(checkSpot(tempPosition) == true) {
+                tempTurtleObj.currentPos = tempPosition;
+                /*
+                if((path.indexOf(tempTurtleObj.currentPos) + currentDice) >= path.length) {
+                    switch(data.color) {
+                    case "Red":
+                        redPath.pop();
+                        break;
+                    case "Blue":
+                        bluePath.pop();
+                        break;
+                    case "Orange":
+                        orangePath.pop();
+                        break;
+                    case "Purple":
+                        purplePath.pop();
+                        break;
+                    }
+                }*/
+            } 
+            else {
+                turtle = checkSpot(tempPosition);
+                if(turtle.color != data.color.toLowerCase()) {
+                    console.log("mamy bicie " + turtle.color + " " +  data.color.toLowerCase())
+                    turtle.x = turtle.startx;
+                    turtle.z = turtle.startz;
+                    turtle.currentPos = null;
+                    tempTurtleObj.currentPos = tempPosition;
+                console.log(" ")
+                }   
+            }     
+        }
+
+        for(n = 0; n < turtles.length; n++)
+            console.log("currentPos " + n + " " + turtles[n].currentPos)
+
+        if(checkWin(data.color))
+                io.sockets.emit("winner", { color: data.color.toLowerCase() });
+
+        console.log(tempTurtleObj.currentPos)
+        for(k = 0; k < fieldsTable.length; k++)
+            if(fieldsTable[k].name == tempTurtleObj.currentPos) {
+                tempTurtleObj.x = fieldsTable[k].x;
+                tempTurtleObj.z = fieldsTable[k].z;
+            }
         io.sockets.emit("newMove", { turtles: turtles });
         index = colors.indexOf(currentTurn)
         var newTurn = null;

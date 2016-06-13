@@ -57,7 +57,7 @@ function Ui()
     }
 
     this.sound = function () {
-        space = new Audio('sfx/space.mp3');
+        space = new Audio('sfx/pope.mp3');
         space.loop = true;
         space.volume = 0.1;
         space.play();
@@ -73,7 +73,7 @@ function Ui()
         ss.style.textAlign = "center";
         ss.style.padding = "10px";
         ss.style.paddingBottom = "2%";
-        ss.innerHTML = "<h2>Sala chwały</h2>Mikosz to najlpeszy gracz w chińczyka"
+        ss.innerHTML = "<h2>Sala chwały</h2>Mikosz to najlepszy gracz w chińczyka"
         ss.id = "sala";
         var ssx = document.createElement("div");
         ssx.style.position = "absolute";
