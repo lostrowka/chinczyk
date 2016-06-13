@@ -27,6 +27,63 @@ function Ui()
         document.body.appendChild(ss);
     }
 
+    this.helper = function () {
+        var ss = document.createElement("div");
+        ss.style.position = "absolute";
+        ss.style.backgroundColor = "#C4C4C4";
+        ss.style.height = "auto";
+        ss.style.width = "15%";
+        ss.style.left = "3%";
+        ss.style.top = "30%";
+        ss.style.textAlign = "center";
+        ss.style.padding = "10px";
+        ss.style.paddingBottom = "2%";
+        ss.innerHTML = "<h2>Instrukcja</h2><b>Sterowanie:</b><br>Mysz - ruch pionków, kamera<br>Enter - koniec tury<br><br><b>Rozgrywka:</b><br>Twoim celem jest doprowadzenie wszystkich swoich żółwi do domku, powodzenia! "
+        ss.id = "helper";
+        var ssx = document.createElement("div");
+        ssx.style.position = "absolute";
+        ssx.style.top = "0";
+        ssx.style.right = "0";
+        ssx.innerHTML = "X";
+        ssx.style.color = "white";
+        ssx.style.padding = "3px";
+        ssx.addEventListener("click", function () {
+            //console.log("usuwam");
+            document.body.removeChild(ss);
+        })
+        ssx.style.backgroundColor = "#F2495A";
+        ss.appendChild(ssx);
+        document.body.appendChild(ss);
+    }
+
+    this.sala = function () {
+        var ss = document.createElement("div");
+        ss.style.position = "absolute";
+        ss.style.backgroundColor = "#C4C4C4";
+        ss.style.width = "15%";
+        ss.style.right = "3%";
+        ss.style.top = "30%";
+        ss.style.textAlign = "center";
+        ss.style.padding = "10px";
+        ss.style.paddingBottom = "2%";
+        ss.innerHTML = "<h2>Sala chwały</h2>Mikosz to najlpeszy gracz w chińczyka"
+        ss.id = "sala";
+        var ssx = document.createElement("div");
+        ssx.style.position = "absolute";
+        ssx.style.top = "0";
+        ssx.style.right = "0";
+        ssx.innerHTML = "X";
+        ssx.style.color = "white";
+        ssx.style.padding = "3px";
+        ssx.addEventListener("click", function () {
+            //console.log("usuwam");
+            document.body.removeChild(ss);
+        })
+        ssx.style.backgroundColor = "#F2495A";
+        ss.appendChild(ssx);
+        document.body.appendChild(ss);
+    }
+
 	this.writeColor = function(color) {
 		var yourColor = document.createElement('div');
 		yourColor.id = "yourColor";

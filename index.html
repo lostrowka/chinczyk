@@ -14,19 +14,21 @@
 		<script>
 				var main;
 				window.addEventListener("load", function () {
+				    var ui = new Ui();
+				    ui.startScreen();
 				    main = new Main();
 				});
 		</script>
 </head>
 <body>
-		<div id="chooseColor">
-				<h3 id="chooseColorDiv"> Choose your color </h3>
+		<div id="chooseColor" style="visibility: hidden;">
+				<h3 id="chooseColorDiv"> Wybierz swój kolor </h3>
 				<div id="red" class="colors"><div id="redColor" class="colorCircles"></div></div>
 				<div id="blue" class="colors"><div id="blueColor" class="colorCircles"></div></div>
 				<div id="orange" class="colors"><div id="orangeColor" class="colorCircles"></div></div>
 				<div id="purple" class="colors"><div id="purpleColor" class="colorCircles"></div></div>
-				<input type="button" value="Select" id="select" />
+				<input type="button" value="Graj!" id="select" />
 		</div>
-		<div id="div1"></div>
+    <div id="div1" style="visibility: hidden;"></div>
 </body>
 </html>

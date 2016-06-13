@@ -2,7 +2,6 @@
 
 function Main() {
     var ui = new Ui();
-    ui.startScreen();
 	scene = new THREE.Scene();
 	var meshModel;
 	camera = new THREE.PerspectiveCamera(
@@ -14,7 +13,7 @@ function Main() {
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setClearColor(0xFFFFFF);
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	document.body.appendChild(renderer.domElement);
+	
 
 	//var axis = new THREE.AxisHelper(2000);
 	//scene.add(axis);
@@ -167,6 +166,12 @@ function Main() {
 		scene.add(ninjaPurple2);
 		scene.add(ninjaPurple3);
 		scene.add(ninjaPurple4);
+
+		ui.helper();
+		ui.sala();
+		document.body.appendChild(renderer.domElement);
+		
+
 		
 	}
 
