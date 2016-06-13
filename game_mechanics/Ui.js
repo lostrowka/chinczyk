@@ -56,6 +56,13 @@ function Ui()
         document.body.appendChild(ss);
     }
 
+    this.sound = function () {
+        space = new Audio('sfx/space.mp3');
+        space.loop = true;
+        space.volume = 0.1;
+        space.play();
+    }
+
     this.sala = function () {
         var ss = document.createElement("div");
         ss.style.position = "absolute";

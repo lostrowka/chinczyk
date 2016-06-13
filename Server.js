@@ -235,6 +235,14 @@ var server = http.createServer(function (req, res) {
 						        res.end();
 						    });
 						}
+						else if (req.url === "/sfx/space.mp3") {
+						    fs.readFile("sfx/space.mp3", function (error, data) {
+						        res.writeHead(200, { 'Content-Type': 'audio/mpeg' });
+						        res.write(data);
+						        res.end();
+						    })
+
+						}
 						break;
 		}
 })

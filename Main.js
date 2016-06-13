@@ -170,6 +170,7 @@ function Main() {
 		ui.helper();
 		ui.sala();
 		document.body.appendChild(renderer.domElement);
+		ui.sound();
 		
 
 		
