@@ -64,17 +64,17 @@ function Ui()
     }
 
     this.sala = function (data) {
+    	console.log("data " + data)
     	var string = null;
-    	if(data == null)
+    	if(data == null || data.length == 0)
     		string = "Brak wyników"
     	else {
-	    	for(p = 0; p < data.length; p++) {
+    		string = "<table>";	    	
+    		for(p = 0; p < data.length; p++) {
 	    		console.log(data[p].num.toString() + " " + data[p].nick + " " + data[p].kolor)
-	    		if(string == null)
-	    			string = "<tr><td style='width: 25%;'>" + data[p].num + "</td><td style='width: 50%;'>" + data[p].nick + "</td><td style='width: 25%;'>" + data[p].kolor + "</td></tr>";
-	    		else
 	    			string += "<tr><td style='width: 25%;'>" + data[p].num + "</td><td style='width: 50%;'>" + data[p].nick + "</td><td style='width: 25%;'>" + data[p].kolor + "</td></tr>";
 	    	}
+	    	string += "</table>";
     	}
         var ss = document.createElement("div");
         ss.style.position = "absolute";
@@ -86,7 +86,7 @@ function Ui()
         ss.style.textAlign = "center";
         ss.style.padding = "10px";
         ss.style.paddingBottom = "2%";
-        ss.innerHTML = "<h2>Sala chwały</h2><table>" + string + "</table>";
+        ss.innerHTML = "<h2>Sala chwały</h2>" + string;
         ss.id = "sala";
         var ssx = document.createElement("div");
         ssx.style.position = "absolute";
