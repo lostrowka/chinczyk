@@ -476,7 +476,7 @@ io.sockets.on("connection", function (client) {
         console.log("winnerName " + data.name + " " + data.color);
         var winner = new Models.Wygrany(
             {
-                id:          mongoData.length, 
+                num:         (parseInt(mongoData.length) + 1), 
                 nick:        data.name,
                 kolor:       data.color
             });
@@ -581,7 +581,7 @@ io.sockets.on("connection", function (client) {
             console.log("currentPos " + n + " " + turtles[n].currentPos)
 
         if(checkWin(data.color))
-                io.sockets.emit("winner", { color: data.color.toLowerCase() });
+            io.sockets.emit("winner", { color: data.color.toLowerCase() });
 
         console.log(tempTurtleObj.currentPos)
         for(k = 0; k < fieldsTable.length; k++)

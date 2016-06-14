@@ -89,7 +89,7 @@ function Main() {
 
    		}
 		alert("Wygrał: " + kolor);
-		if(selectedColorDiv.id == kolor) {
+		if(selectedColorDiv.id == data.color) {
 			var nickname = prompt("Podaj swój nick")
 			client.emit("winnerName", { name: nickname, color: kolor })
 		}
