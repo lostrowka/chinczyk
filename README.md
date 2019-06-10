@@ -20,4 +20,4 @@ Uwaga! do rozgywki potrzeba serwer node, do pobrania np. <a href="https://nodejs
 7. Wpisz w przeglądarkę 'localhost:3000' lub w wypadku gdy klient jest zdalny 'xxx.xxx.xxx.xxx:3000' , w miejsce x wstaw swoje ip
 8. Ciesz się wspaniałą grą :)
 
-[**bardzo** kiepskiej jakości demo](https://photos.google.com/share/AF1QipMmFyG8VfFkzYv06Izk0w62gLnf0D3sDgV2kFgEPfmNShAdzvq6ZzD26I8bB4hlzA?key=QzRPclREYjhWMHNpaThJZjB1MGZKTWhMNTRscE9B)
+[**bardzo** kiepskiej jakości demo](https://photos.google.com/share/AF1QipMmFyG8VfFkzYv06Izk0w62gLnf0D3sDgV2kFgEPfmNShAdzvq6ZzD26I8bB4hlzA/photo/AF1QipNJ9ySEHj3eHvvLBOQcn7e1F-XlIAecVBY6kyT-?key=QzRPclREYjhWMHNpaThJZjB1MGZKTWhMNTRscE9B)
